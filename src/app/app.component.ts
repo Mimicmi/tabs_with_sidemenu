@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -9,7 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent implements OnInit{
+
+// on implémente 2 méthodes d'angular: OnInit & DoCheck
+export class AppComponent implements OnInit, DoCheck{
 
   public selectedIndex = 0;
 
@@ -52,13 +54,20 @@ export class AppComponent implements OnInit{
       this.splashScreen.hide();
     });
   }
+
   ngOnInit() {
+    this.checkSelected();
+  }
+
+  ngDoCheck() {
+    this.checkSelected();
+  }
+
+  checkSelected() {
     const path = window.location.pathname;
     console.log('ngOnInit path: ', path);
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.url === path);
     }
-    console.log('ngOnInit selectedIndex :', this.selectedIndex)
   }
 }
-
