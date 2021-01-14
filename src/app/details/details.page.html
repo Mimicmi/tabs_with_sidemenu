@@ -9,16 +9,20 @@
 
 <ion-content>
   <ion-card>
-    <img [src]="photoDetails.url" width="100%"/>
+    <img [src]="photoDetails.url" width="100%" />
     <ion-card-header>
       <ion-card-subtitle>from {{ photoDetails.author}}</ion-card-subtitle>
       <ion-card-title>{{ photoDetails.title }}</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      {{ photoDetails.description }}
-    </ion-card-content>
+    <ion-card-content> {{ photoDetails.description }} </ion-card-content>
+
+    <ion-button (click)="displayImage()" expand="full">Add to favorite</ion-button>
+    <ion-list>
+      <ion-item *ngFor="let item of savedImage">
+        {{ item }}
+      </ion-item>
+    </ion-list>
   </ion-card>
 
-  <ion-button expand="full" routerLink="/tabs/tab2">Retour à la liste</ion-button>
-
+  <ion-button expand="full" routerLink="/tabs/tab2">Return to photo list</ion-button>
 </ion-content>
