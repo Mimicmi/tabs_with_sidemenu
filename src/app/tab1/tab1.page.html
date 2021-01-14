@@ -13,6 +13,16 @@
 
   <ion-img src="../../assets/photos/coffee.jpg" width="full"></ion-img>
   <h1>Welcome to my Photo App</h1>
+
+  <h2>My favorite images</h2>
+  <ion-list>
+    <ion-item *ngFor="let item of savedImage">
+      <ion-img src="{{ item.url }}"></ion-img>
+    </ion-item>
+  </ion-list>
+
+
+  <br>
   <ion-button expand="full" (click)="openMenu()">Display Sidemenu</ion-button>
 
 </ion-content>

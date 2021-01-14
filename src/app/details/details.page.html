@@ -19,7 +19,7 @@
     <ion-button (click)="displayImage()" expand="full">Add to favorite</ion-button>
     <ion-list>
       <ion-item *ngFor="let item of savedImage">
-        {{ item }}
+        <ion-img src="{{ item.url }}"></ion-img>
       </ion-item>
     </ion-list>
   </ion-card>
