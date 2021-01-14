@@ -34,6 +34,11 @@ export class DetailsPage implements OnInit {
     this.storage.set('savedImage', this.savedImage);
   }
 
+  deleteImage(i) {
+    this.savedImage.splice(i, 1);
+    this.storage.set('savedImage', this.savedImage);
+  }
+
   async getStorage() {
     const data = await this.storage.get('savedImage');
     console.log('Données récupérées du Storage', data);

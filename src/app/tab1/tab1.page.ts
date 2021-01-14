@@ -27,6 +27,17 @@ export class Tab1Page {
     // this.storage.set('savedImage', this.savedImage);
   }
 
+  async getStorage() {
+    const data = await this.storage.get('savedImage');
+    console.log('Données récupérées du Storage', data);
+    if (data) this.savedImage = data;
+  }
+
+  ngOnInit() {
+    this.getStorage();
+  }
+
+
 
   openMenu() {
     this.menu.open();
