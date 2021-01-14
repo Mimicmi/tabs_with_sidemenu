@@ -65,7 +65,6 @@ export class AppComponent implements OnInit, DoCheck{
 
   checkSelected() {
     const path = window.location.pathname;
-    console.log('ngOnInit path: ', path);
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.url === path);
     }

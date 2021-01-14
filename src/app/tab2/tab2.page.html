@@ -17,7 +17,8 @@
 
   <ion-list>
     <!-- routerLink est un élément dynamique donc entre [] -->
-    <ion-item *ngFor="let img of photoList" [routerLink]="'/details/' + img.id">
+    <ion-item *ngFor="let img of photoList" [routerLink]="'/tabs/details/' + img.id">
+    <!-- <ion-item *ngFor="let img of photoList" [routerLink]="'/details/' + img.id"> -->
       <ion-avatar slot="start">
         <ion-img [src]="img.url"></ion-img>
       </ion-avatar>
