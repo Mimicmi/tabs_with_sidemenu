@@ -53,6 +53,7 @@ export class DetailsPage implements OnInit {
       // console.log(this.photoService.data[this.photoIndex]);
       this.photoDetails = this.photoService.data[this.photoIndex];
       this.getStorage();
+
     });
   }
 

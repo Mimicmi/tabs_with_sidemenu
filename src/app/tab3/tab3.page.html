@@ -16,4 +16,16 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-list>
+    <ion-item *ngFor="let img of contactList">
+      <ion-avatar slot="start">
+        <ion-img [src]="img.url"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ img.firstName }}</h2>
+        <h3>{{ img.lastName }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
