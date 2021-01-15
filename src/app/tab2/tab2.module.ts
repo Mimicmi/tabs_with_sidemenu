@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 
+import { ListItemComponent } from '../components/list-item/list-item.component'
+
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 
 @NgModule({
@@ -14,6 +16,6 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     FormsModule,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page]
+  declarations: [Tab2Page, ListItemComponent]
 })
-export class Tab2PageModule {}
+export class Tab2PageModule { }
