@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PhotosService } from '../services/photos.service';
-
-import { Storage } from '@ionic/storage';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-details',
@@ -16,34 +15,46 @@ export class DetailsPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private photoService: PhotosService,
-    private storage: Storage) { }
+    private storageServ: StorageService) { }
 
   // on définit l'index du tableau à 0
   photoIndex = 0;
 
-  testText = "Je suis un test en chaîne de caractère";
-  savedImage = [];
+  favArray = [];
+
+
+
+  // testText = "Je suis un test en chaîne de caractère";
+  // savedImage = [];
 
   // déclaration de notre élément pour l'utiliser dans page
   // de details
   photoDetails = this.photoService.data[this.photoIndex];
 
-  displayImage() {
-    this.savedImage.push(this.photoService.data[this.photoIndex]);
-    console.log(this.savedImage);
-    this.storage.set('savedImage', this.savedImage);
+  async addtoFavorites() {
+    const data = await this.storageServ.getFavPhotos();
+    this.favArray = data ? data : [];
+    this.favArray.push(this.photoDetails);
+    this.storageServ.setFavPhotos(this.favArray);
+    console.log(data);
   }
 
-  deleteImage(i) {
-    this.savedImage.splice(i, 1);
-    this.storage.set('savedImage', this.savedImage);
-  }
+  // displayImage() {
+  //   this.savedImage.push(this.photoService.data[this.photoIndex]);
+  //   console.log(this.savedImage);
+  //   this.storage.set('savedImage', this.savedImage);
+  // }
 
-  async getStorage() {
-    const data = await this.storage.get('savedImage');
-    console.log('Données récupérées du Storage', data);
-    if (data) this.savedImage = data;
-  }
+  // deleteImage(i) {
+  //   this.savedImage.splice(i, 1);
+  //   this.storage.set('savedImage', this.savedImage);
+  // }
+
+  // async getStorage() {
+  //   const data = await this.storage.get('savedImage');
+  //   console.log('Données récupérées du Storage', data);
+  //   if (data) this.savedImage = data;
+  // }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -52,7 +63,11 @@ export class DetailsPage implements OnInit {
       this.photoIndex = this.photoService.data.findIndex(item => item.id == params.id);
       // console.log(this.photoService.data[this.photoIndex]);
       this.photoDetails = this.photoService.data[this.photoIndex];
-      this.getStorage();
+      // this.getStorage();
+
+      this.storageServ.getFavById(params.id).then((index) => {
+        console.log('La photo est dans les favoris ?', index);
+      });
 
     });
   }

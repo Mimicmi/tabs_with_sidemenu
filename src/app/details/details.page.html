@@ -16,7 +16,7 @@
     </ion-card-header>
     <ion-card-content> {{ photoDetails.description }} </ion-card-content>
 
-    <ion-button (click)="displayImage()" expand="full">Add to favorite</ion-button>
+    <!-- <ion-button (click)="displayImage()" expand="full">Add to favorite</ion-button>
     <ion-item *ngFor="let item of savedImage; let i = index">
       <p>
         {{ item.title }} picture successully added to your favorite homepage
@@ -24,8 +24,9 @@
       <ion-button slot="end" color="danger" (click)="deleteImage(i)">
         Delete
       </ion-button>
-    </ion-item>
+    </ion-item> -->
   </ion-card>
+  <ion-button expand="full" (click)="addtoFavorites()">Add to favorites</ion-button>
 
   <ion-button expand="full" routerLink="/tabs/tab2">Return to photo list</ion-button>
 </ion-content>
