@@ -16,9 +16,17 @@
   </ion-header>
 
   <ion-list>
-    <app-list-item *ngFor="let img of photoList" [img]="img">
+    <ion-item-sliding *ngFor="let img of photoList">
+      <ion-item-options side="start">
+        <ion-item-option (click)="alert(img.id)">LEFT</ion-item-option>
+      </ion-item-options>
 
-    </app-list-item>
+      <app-list-item [img]="img"></app-list-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger">RIGHT</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
 
   </ion-list>
 </ion-content>

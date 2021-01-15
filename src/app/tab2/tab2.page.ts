@@ -17,4 +17,8 @@ export class Tab2Page implements OnInit {
     // console.log(this.photoService.data);
     this.photoList = this.photoService.data;
   }
+
+  alert(id) {
+    alert(id);
+  }
 }
