@@ -26,7 +26,10 @@
       </ion-button>
     </ion-item> -->
   </ion-card>
-  <ion-button expand="full" (click)="addtoFavorites()">Add to favorites</ion-button>
+  <ion-button *ngIf="!addedToFav" expand="full" (click)="addtoFavorites()">Add to favorites</ion-button>
+  <ion-button *ngIf="addedToFav" expand="full" (click)="removeFromFav(photoDetails.id)" color="danger">Delete from
+    favorites
+  </ion-button>
 
   <ion-button expand="full" routerLink="/tabs/tab2">Return to photo list</ion-button>
 </ion-content>

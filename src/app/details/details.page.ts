@@ -30,13 +30,28 @@ export class DetailsPage implements OnInit {
   // déclaration de notre élément pour l'utiliser dans page
   // de details
   photoDetails = this.photoService.data[this.photoIndex];
+  addedToFav = false;
 
   async addtoFavorites() {
     const data = await this.storageServ.getFavPhotos();
+    // let data = await this.storageServ.getFavPhotos();
+
+    // if (!data) data = [];
+    // data.push(this.photoDetails);
     this.favArray = data ? data : [];
     this.favArray.push(this.photoDetails);
     this.storageServ.setFavPhotos(this.favArray);
-    console.log(data);
+    this.addedToFav = true;
+    console.log("added to fav", this.favArray);
+  }
+
+  async removeFromFav(id) {
+    const index = await this.storageServ.getFavById(id);
+    const data = await this.storageServ.getFavPhotos();
+    data.splice(index, 1);
+    this.storageServ.setFavPhotos(data);
+    this.addedToFav = false;
+    console.log("Remove from fav", data);
   }
 
   // displayImage() {
@@ -67,6 +82,7 @@ export class DetailsPage implements OnInit {
 
       this.storageServ.getFavById(params.id).then((index) => {
         console.log('La photo est dans les favoris ?', index);
+        if (index != -1) this.addedToFav = true;
       });
 
     });

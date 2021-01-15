@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 
 import { PhotosService } from '../services/photos.service';
@@ -9,13 +9,14 @@ import { StorageService } from '../services/storage.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
   constructor(
     private menu: MenuController,
     private photoService: PhotosService,
     private storageService: StorageService) { }
 
+  photoList = [];
   // savedImage = [];
   // photoIndex = 0;
 
@@ -42,6 +43,7 @@ export class Tab1Page {
 
   ionViewWillEnter() {
     this.storageService.getFavPhotos().then((fav) => {
+      this.photoList = fav;
       console.log('ionViewWillEnter', fav);
     });
   }
